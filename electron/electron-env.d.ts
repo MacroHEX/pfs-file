@@ -23,5 +23,18 @@ declare namespace NodeJS {
 
 // Used in Renderer process, expose in `preload.ts`
 interface Window {
-  ipcRenderer: import('electron').IpcRenderer
+  ipcRenderer: {
+    send: (channel: string, ...args: unknown[]) => void;
+    invoke: <T = unknown>(channel: string, ...args: unknown[]) => Promise<T>;
+    on: <T>(channel: string, listener: (event: IpcRendererEvent, data: T) => void) => void;
+    off: <T>(channel: string, listener: (event: IpcRendererEvent, data: T) => void) => void;
+
+    selectFile: (options?: OpenDialogOptions) => Promise<string | null>;
+    selectOutputDir: (options?: OpenDialogOptions) => Promise<string | null>;
+  };
+}
+
+interface IpcRendererEvent {
+  sender: IpcRenderer;
+  senderId: number;
 }
