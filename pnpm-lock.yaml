@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.0.6
         version: 4.0.6(vite@5.4.14(@types/node@22.13.1)(lightningcss@1.29.1))
+      buffer-crc32:
+        specifier: ^0.2.13
+        version: 0.2.13
       react:
         specifier: ^18.2.0
         version: 18.3.1
